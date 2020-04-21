@@ -2,6 +2,7 @@ import React from 'react';
 import Chance from 'chance';
 import verb from './verb';
 import idiom from './idiom';
+import drunkenness from './drunkenness';
 
 var chance = new Chance();
 var capitalize = require('capitalize');
@@ -25,7 +26,14 @@ function artist(feat=true){
 }
 
 function title(){
-  return capitalise(idiom());
+  var t = randomElement([
+    idiom(),
+    drunkenness(),
+    Sentencer.make("the {{ noun }}"),
+    verb(),
+    verb() + " " + chance.first()
+  ]);
+  return capitalise(t);
 }
 
 function tempo(){
