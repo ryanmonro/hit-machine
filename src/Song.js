@@ -3,6 +3,7 @@ import Chance from 'chance';
 import verb from './verb';
 import idiom from './idiom';
 import drunkenness from './drunkenness';
+import Button from '@material-ui/core/Button';
 
 var chance = new Chance();
 var capitalize = require('capitalize');
@@ -103,8 +104,12 @@ class Song extends React.Component {
         <h2>{ this.state.tempo }</h2>
         <h1>Key</h1>
         <h2>{ this.state.key }</h2>
-        <button onClick={ this.randomise }>Randomise</button>
-        
+        <Button variant="contained" 
+          onClick={ this.randomise }
+          color="primary">
+          Randomise
+        </Button>
+
       </div>
     );
   }
