@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Song Generator
+        Hit Machine
       </header>
       <Song />
     </div>
