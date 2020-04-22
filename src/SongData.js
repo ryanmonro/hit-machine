@@ -19,6 +19,10 @@ class SongData{
     this.tempo = tempo();
     this.mood = mood();
     this.minor = minor();
+    this.guitar = guitar();
+    this.keys = keys();
+    this.bass = bass();
+    this.drums = drums();
     this.minorness = randomElement(["natural", "harmonic", "melodic"]);
     this.key = this.minor ? Key.minorKey(key()) : Key.majorKey(key());
     this.progression = this.newChordSequence();
@@ -75,6 +79,73 @@ function key(){
   return k;
 }
 
+function drums(){
+  return randomElement([
+    "Drum kit (distorted)",
+    "Drum kit (Rock beat #1)",
+    "Drum kit (roomy, Wall of Sound-ish)",
+    "CR-78 presets",
+    "808 (trappy)",
+    "808 (80s RnB)",
+    "909 (Techno)",
+    "Just claps",
+    "Drum kit (Off the Wall-ish)",
+    "Classic hip-hop break",
+    "Amen break",
+    "None",
+  ]);
+}
+
+function bass(){
+  return randomElement([
+    "Bass guitar: incongruous slapping",
+    "Bass guitar: picked 8th note all downstrokes",
+    "Bass guitar: picked, Wrecking Crew-esque",
+    "Bass guitar: long notes, change when the chord does",
+    "Bass guitar: what the kick drum's doing",
+    "Bass guitar: dubby",
+    "Bass guitar: Motown",
+    "Synth: sine wave long notes",
+    "Synth: detuned, many oscillators, long notes",
+    "Synth: acid",
+    "Synth: 16th notes sequenced",
+    "None"
+  ])
+}
+
+function guitar(){
+  return randomElement([
+    "Nile Rogers-ish",
+    "The Edge-ish",
+    "Palm muted power chords",
+    "Acoustic strumming",
+    "Electric slacker strumming",
+    "Clean verse, distorted chorus",
+    "Reggae offbeats",
+    "Same as the bass line",
+    "Long chords",
+    "Afrobeat-ish arpeggios",
+    "Lapsteel",
+    "None"
+  ])
+}
+
+// separate sound from part
+function keys(){
+  return randomElement([
+    "Juno pads",
+    "Organ pads",
+    "Electric piano",
+    "Mellotron strings",
+    "Arpeggiated",
+    "Piano (long chords)",
+    "Piano (ravey)",
+    "Piano (reggae offbeats)",
+    "Felted piano",
+    "None"
+  ])
+}
+
 // Utility functions
 
 function capitalise(string){
@@ -88,5 +159,6 @@ function randomElement(arr){
 function randomInt(max){
   return Math.floor(Math.random() * max);
 }
+
 
 export default SongData;

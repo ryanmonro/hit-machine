@@ -10,6 +10,9 @@ class Song extends React.Component {
       song: new SongData()
     };
   }
+  componentWillMount() {
+    document.title = 'Hit Machine'
+  }
   randomise(){
     this.setState({
       song: new SongData()
@@ -28,7 +31,16 @@ class Song extends React.Component {
         <h2>{ this.state.song.mood }</h2>
         <h1>Key</h1>
         <h2>{ this.state.song.key.tonic } { this.state.song.key.type }</h2>
+        <h1>Guitar</h1>
+        <h2>{ this.state.song.guitar }</h2>
+        <h1>Keys</h1>
+        <h2>{ this.state.song.keys }</h2>
+        <h1>Bass</h1>
+        <h2>{ this.state.song.bass }</h2>
+        <h1>Drums</h1>
+        <h2>{ this.state.song.drums }</h2>
         <p> {this.state.song.progression } </p>
+
         <Button variant="contained" 
           onClick={ this.randomise }
           color="primary">
