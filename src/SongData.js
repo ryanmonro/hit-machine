@@ -1,8 +1,12 @@
+// avoid mmaj7
+
 import Chance from 'chance';
 import verb from './verb';
+import mood from './mood';
 import idiom from './idiom';
 import drunkenness from './drunkenness';
-import { Note, Scale, Key } from "@tonaljs/tonal";
+import chordSequence from './chordSequence';
+import { Note, Scale, Key, Progression } from "@tonaljs/tonal";
 
 var chance = new Chance();
 var capitalize = require('capitalize');
@@ -13,8 +17,17 @@ class SongData{
     this.artist = artist();
     this.title = title();
     this.tempo = tempo();
+    this.mood = mood();
     this.minor = minor();
+    this.minorness = randomElement(["natural", "harmonic", "melodic"]);
     this.key = this.minor ? Key.minorKey(key()) : Key.majorKey(key());
+    this.progression = this.newChordSequence();
+  }
+  newChordSequence(){
+    if (this.minor){
+      return chordSequence().map((c) => this.key[this.minorness].chords[parseInt(c) - 1])
+    }
+    return chordSequence().map((c) => this.key.chords[parseInt(c) - 1])
   }
 
 }

@@ -24,8 +24,11 @@ class Song extends React.Component {
         <h2>{ this.state.song.title }</h2>
         <h1>Tempo</h1>
         <h2>{ this.state.song.tempo }</h2>
+        <h1>Mood</h1>
+        <h2>{ this.state.song.mood }</h2>
         <h1>Key</h1>
         <h2>{ this.state.song.key.tonic } { this.state.song.key.type }</h2>
+        <p> {this.state.song.progression } </p>
         <Button variant="contained" 
           onClick={ this.randomise }
           color="primary">
