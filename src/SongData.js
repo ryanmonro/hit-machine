@@ -23,9 +23,10 @@ class SongData{
     this.keys = keys();
     this.bass = bass();
     this.drums = drums();
-    this.minorness = randomElement(["natural", "harmonic", "melodic"]);
+    this.minorness = randomElement(["natural", "melodic"]);
     this.key = this.minor ? Key.minorKey(key()) : Key.majorKey(key());
-    this.progression = this.newChordSequence();
+    this.verse = this.newVerse();
+    this.chorus = this.newChorus();
   }
   newChordSequence(){
     if (this.minor){
@@ -33,7 +34,35 @@ class SongData{
     }
     return chordSequence().map((c) => this.key.chords[parseInt(c) - 1])
   }
+  newVerse(){
+    return this.newChordSequence()
+  }
 
+  newChorus(){
+    return this.newChordSequence()
+  }
+
+  details(){
+    return [
+      {name: "Artist", value: this.artist},
+      {name: "Title", value: this.title},
+      {name: "Tempo", value: this.tempo},
+      {name: "Mood", value: this.mood},
+      {name: "Key", value: this.key.tonic + " " + this.key.type},
+      {name: "Guitar", value: this.guitar},
+      {name: "Keys", value: this.keys},
+      {name: "Bass", value: this.bass},
+      {name: "Drums", value: this.drums},
+    ]
+  }
+
+  structure(){
+    return [
+      {name: "Verse", chords: this.verse},
+      {name: "Chorus", chords: this.chorus},
+
+    ]
+  }
 }
 
 
@@ -155,10 +184,5 @@ function capitalise(string){
 function randomElement(arr){
   return arr[Math.floor(Math.random() * arr.length)]
 }
-
-function randomInt(max){
-  return Math.floor(Math.random() * max);
-}
-
 
 export default SongData;

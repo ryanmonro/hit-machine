@@ -21,25 +21,20 @@ class Song extends React.Component {
   render() {
     return (
       <div className="Song">
-        <h1>Artist</h1>
-        <h2>{ this.state.song.artist }</h2>
-        <h1>Title</h1>
-        <h2>{ this.state.song.title }</h2>
-        <h1>Tempo</h1>
-        <h2>{ this.state.song.tempo }</h2>
-        <h1>Mood</h1>
-        <h2>{ this.state.song.mood }</h2>
-        <h1>Key</h1>
-        <h2>{ this.state.song.key.tonic } { this.state.song.key.type }</h2>
-        <h1>Guitar</h1>
-        <h2>{ this.state.song.guitar }</h2>
-        <h1>Keys</h1>
-        <h2>{ this.state.song.keys }</h2>
-        <h1>Bass</h1>
-        <h2>{ this.state.song.bass }</h2>
-        <h1>Drums</h1>
-        <h2>{ this.state.song.drums }</h2>
-        <p> {this.state.song.progression } </p>
+        { this.state.song.details().map ((detail) => 
+          <h3>{detail.name} <span style={{fontWeight: 400}}>{detail.value}</span></h3>
+        )}
+
+        { this.state.song.structure().map((section) =>
+          <div className="section">
+          <h3>{section.name}</h3>
+          <p> | 
+          { section.chords.map((chord) =>
+            <span> {chord} |</span>
+          )}
+          </p>
+          </div>
+        )}
 
         <Button variant="contained" 
           onClick={ this.randomise }
