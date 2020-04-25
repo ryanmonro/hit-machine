@@ -1,5 +1,5 @@
 import React from 'react';
-import Song from './Song';
+import HitMachine from './HitMachine';
 import './App.css';
 
 function App() {
@@ -7,8 +7,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         Hit Machine
+        <div className="App-description">a random song idea generator</div>
       </header>
-      <Song />
+      <HitMachine />
     </div>
   );
 }
