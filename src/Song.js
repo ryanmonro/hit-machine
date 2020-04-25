@@ -176,10 +176,11 @@ function artist(allowFeat=true){
     Sentencer.make("the {{ noun }}"),
     Sentencer.make("the {{ nouns }}"),
   ])
+  a = capitalise(a)
   if (allowFeat && Math.random() < 0.15) {
     a += " feat. " + artist(false)
   }
-  return capitalise(a);
+  return a;
 }
 
 function title(){
@@ -237,7 +238,7 @@ function bass(){
     "synth, detuned, many oscillators, long notes",
     "synth, acid",
     "synth, 16th notes sequenced",
-    "None"
+    "none"
   ])
 }
 
@@ -254,7 +255,7 @@ function guitar(){
     "long chords",
     "afrobeat-ish arpeggios",
     "lapsteel",
-    "None"
+    "none"
   ])
 }
 
@@ -270,7 +271,7 @@ function keys(){
     "piano (ravey)",
     "piano (reggae offbeats)",
     "felted piano",
-    "None"
+    "none"
   ])
 }
 

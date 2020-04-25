@@ -19,7 +19,7 @@ class HitMachine extends React.Component {
     });
   }
   comment(text){
-    return <p className="sectionComment">({text})</p>
+    return <span className="sectionComment">({text})</span>
   }
   render() {
     return (
@@ -33,8 +33,9 @@ class HitMachine extends React.Component {
 
         { this.state.song.structure.map((section, idx) =>
           <div className="section" key={idx}>
-          <h3 className="sectionHeading">{section.name}</h3>
+          <h3 className="sectionHeading">{section.name}
           { section.comment.length > 0 ? this.comment(section.comment) : "" }
+          </h3>
           <p className="chordRow"> | 
           { section.chords.map((chord, idx) =>
             <span key={idx}> {chord} |</span>
