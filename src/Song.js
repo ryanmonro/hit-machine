@@ -17,7 +17,7 @@ class Song{
     this.artist = artist();
     this.title = title();
     this.tempo = tempo();
-    this.mood = mood();
+    this.mood = mood().toLowerCase();
     this.minor = minor();
     this.guitar = guitar();
     this.keys = keys();
@@ -130,8 +130,9 @@ class Song{
           1: chorus
         },
         comment: {
-          0.3: chorusComment,
-          0.7: "twice as long as the first chorus"
+          0.4: chorusComment,
+          0.6: "twice as long as the first chorus",
+
         }
       }
     }
@@ -140,9 +141,10 @@ class Song{
     for (var section in tree){
       var newSection = {name: section};
       for (var key in tree[section]){
+        console.log(section, key, Object.keys(tree[section][key]))
         newSection[key] = chance.weighted(
           Object.values(tree[section][key]),
-          Object.keys(tree[section][key])
+          Object.keys(tree[section][key]).map(parseFloat)
         )
       }
       this.structure.push(newSection)
@@ -150,11 +152,11 @@ class Song{
   }
   details(){
     return [
-      {name: "Artist", value: this.artist},
-      {name: "Title", value: this.title},
+      // {name: "Artist", value: this.artist},
+      // {name: "Title", value: this.title},
       {name: "Tempo", value: this.tempo},
-      {name: "Mood", value: this.mood},
       {name: "Key", value: this.key.tonic + " " + this.key.type},
+      {name: "Mood", value: this.mood},
       {name: "Guitar", value: this.guitar},
       {name: "Keys", value: this.keys},
       {name: "Bass", value: this.bass},

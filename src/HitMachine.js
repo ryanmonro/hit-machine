@@ -24,6 +24,7 @@ class HitMachine extends React.Component {
   render() {
     return (
       <div className="HitMachine">
+        <h1>{this.state.song.artist} – {this.state.song.title}</h1>
         { this.state.song.details().map ((detail, idx) => 
           <div className="songDetail" key={idx}>
           <h3>{detail.name} <span style={{fontWeight: 400}}>{detail.value}</span></h3>
