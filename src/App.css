@@ -24,3 +24,12 @@
 .chordRow {
   font-weight: 500;
 }
+
+.section {
+  margin: 16px;
+}
+
+.sectionComment, .sectionHeading, .chordRow {
+  margin: 4px;
+}
+

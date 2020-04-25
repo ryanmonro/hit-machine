@@ -1,4 +1,4 @@
-// lose 7ths in general, this is pop
+// comments for sections
 
 import Chance from 'chance';
 import verb from './verb';
@@ -50,47 +50,103 @@ class Song{
   buildSong(){
     var verse = this.newChordSequence();
     var chorus = this.newChordSequence();
+    var middle = this.newChordSequence();
     if (Math.random() < 0.1) {
       // verse and chorus are the same
       chorus = verse;
     }
-    this.structure = [
-      {name: "Verse 1", chords: verse},
-      {name: "Chorus 1", chords: chorus},
-      {name: "Verse 2", chords: verse},
-      {name: "Chorus 2", chords: chorus},
-    ]
-    if (Math.random() < 0.9) {
-      // 90% chance of an intro, otherwise straight in
-      // default: intro is a new section (10% chance)
-      var intro = this.newChordSequence();
-      var introChoice = Math.random();
-      if (introChoice < 0.45) {
-        // 45% chance intro is a chorus ie Bon Jovi
-        intro = chorus;
-      } else if (introChoice < 0.9) {
-        // 45% chance intro is a verse ie not Bon Jovi
-        intro = verse
+    var chorusComment = chance.weighted(
+      ["more hi-hats", "another guitar part", "another keyboard part", "add handclaps", "bass gets busier"], 
+      [0.2, 0.2, 0.2, 0.2, 0.2]
+    );
+
+    var tree = {
+      'Intro': {
+        'comment': {
+          0.25: "just drums",
+          // 0.25: "no drums", // will that work?
+          0.25: "just bass",
+          0.25: "just chords",
+          0.25: "no bass"
+        },
+        'chords': {
+          0.1: [],
+          0.4: verse,
+          0.4: chorus,
+          // just first chord!
+          0.1: [verse[0], verse[0], verse[0], verse[0]] 
+        }
+      },
+      'Verse 1': {
+        'chords': {
+          1: verse
+        },
+        'comment': {
+          0.1: "no bass until the chorus"
+        }
+      },
+      'Chorus 1': {
+        chords: {
+          1: chorus
+        },
+        comment: {
+          1: chorusComment 
+        }
+      },
+      'Verse 2': {
+        chords: {
+          1: verse
+        },
+        comment: {
+          0.25: "drums and bass drop out for a few bars",
+          0.25: "half as long as first verse",
+          0.5: ""
+        }
+      },
+      'Chorus 2': {
+        chords: {
+          1: chorus
+        },
+        comment: {
+          0.7: chorusComment,
+          0.3: "twice as long as the first chorus"
+        }
+      },
+      'Middle': {
+        chords: {
+          0.25: chorus,
+          0.25: middle,
+          0.5: verse
+        },
+        comment: {
+          0.25: "drums and bass drop out and gradually build up",
+          0.25: "some other instrument plays vocal melody",
+          0.25: "slightly different groove to the rest of the song",
+          0.25: "bass drops out"
+        }
+      },
+      'Last Chorus': {
+        chords: {
+          1: chorus
+        },
+        comment: {
+          0.3: chorusComment,
+          0.7: "twice as long as the first chorus"
+        }
       }
-      this.structure.unshift({name: "Intro", chords: intro});
-    }
-    // default middle section: 
-    var middle = this.newChordSequence();
-    // 90% chance of an intro, otherwise straight in
-    var middleChoice = Math.random();
-    if (middleChoice < 0.5) {
-      // 50% chance middle is a chorus
-      middle = chorus;
-    } else if (introChoice < 0.75) {
-      // 25% chance middle is a verse
-      middle = verse
-    }
-    this.structure.push({name: "Middle", chords: middle});
-    this.structure.push({name: "Chorus 3", chords: chorus });
-    if (Math.random() < 0.8) {
-      this.structure.push({name: "Chorus 4", chords: chorus });
     }
 
+    this.structure = [];
+    for (var section in tree){
+      var newSection = {name: section};
+      for (var key in tree[section]){
+        newSection[key] = chance.weighted(
+          Object.values(tree[section][key]),
+          Object.keys(tree[section][key])
+        )
+      }
+      this.structure.push(newSection)
+    }
   }
   details(){
     return [
@@ -151,18 +207,18 @@ function key(){
 
 function drums(){
   return randomElement([
-    "Drum kit (distorted)",
-    "Drum kit (Rock beat #1)",
-    "Drum kit (roomy, Wall of Sound-ish)",
+    "drum kit (distorted)",
+    "drum kit (Rock beat #1)",
+    "drum kit (roomy, Wall of Sound-ish)",
     "CR-78 presets",
     "808 (trappy)",
     "808 (80s RnB)",
     "909 (Techno)",
-    "Just claps",
-    "Drum kit (Off the Wall-ish)",
-    "Classic hip-hop break",
+    "just claps",
+    "drum kit (Off the Wall-ish)",
+    "classic hip-hop break",
     "Amen break",
-    "None",
+    "none",
   ]);
 }
 
