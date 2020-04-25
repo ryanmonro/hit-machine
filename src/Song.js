@@ -141,7 +141,6 @@ class Song{
     for (var section in tree){
       var newSection = {name: section};
       for (var key in tree[section]){
-        console.log(section, key, Object.keys(tree[section][key]))
         newSection[key] = chance.weighted(
           Object.values(tree[section][key]),
           Object.keys(tree[section][key]).map(parseFloat)
@@ -187,7 +186,7 @@ function title(){
   var t = randomElement([
     idiom(),
     drunkenness(),
-    Sentencer.make("the {{ noun }}"),
+    Sentencer.make("{{ noun }}"),
     verb(),
     verb() + " " + chance.first(),
     chance.first()
