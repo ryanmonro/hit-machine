@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/hit-machine/static/css/main.94e1f315.chunk.css",
-    "main.js": "/hit-machine/static/js/main.f07112d4.chunk.js",
-    "main.js.map": "/hit-machine/static/js/main.f07112d4.chunk.js.map",
+    "main.js": "/hit-machine/static/js/main.eda49f27.chunk.js",
+    "main.js.map": "/hit-machine/static/js/main.eda49f27.chunk.js.map",
     "runtime-main.js": "/hit-machine/static/js/runtime-main.711d5a58.js",
     "runtime-main.js.map": "/hit-machine/static/js/runtime-main.711d5a58.js.map",
     "static/js/2.8eed3632.chunk.js": "/hit-machine/static/js/2.8eed3632.chunk.js",
     "static/js/2.8eed3632.chunk.js.map": "/hit-machine/static/js/2.8eed3632.chunk.js.map",
     "index.html": "/hit-machine/index.html",
-    "precache-manifest.cdf5fbc5374f9184fb941da630224a27.js": "/hit-machine/precache-manifest.cdf5fbc5374f9184fb941da630224a27.js",
+    "precache-manifest.92580682b3138e160ad44d0bbb04399f.js": "/hit-machine/precache-manifest.92580682b3138e160ad44d0bbb04399f.js",
     "service-worker.js": "/hit-machine/service-worker.js",
     "static/css/main.94e1f315.chunk.css.map": "/hit-machine/static/css/main.94e1f315.chunk.css.map",
     "static/js/2.8eed3632.chunk.js.LICENSE.txt": "/hit-machine/static/js/2.8eed3632.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.711d5a58.js",
     "static/js/2.8eed3632.chunk.js",
     "static/css/main.94e1f315.chunk.css",
-    "static/js/main.f07112d4.chunk.js"
+    "static/js/main.eda49f27.chunk.js"
   ]
 }
